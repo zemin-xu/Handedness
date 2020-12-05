@@ -31,9 +31,10 @@ public class Movement : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
             // move in depth direction
-            if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
             {
-                if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+                // when interacting with object, the move in depth will not work
+                if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
                 {
                     float step = forwardSpeed * Time.deltaTime; // calculate distance to move
                     if (offset.y > 0)
@@ -45,12 +46,12 @@ public class Movement : MonoBehaviour
                         transform.position = Vector3.MoveTowards(transform.position, transform.position - transform.forward, step);
                     }
                 }
-                else
-                {
-                    transform.position = camera.transform.position;
-                    transform.position += ray.direction;
-                    transform.rotation = Quaternion.LookRotation(ray.direction);
-                }
+            }
+            else
+            {
+                transform.position = camera.transform.position;
+                transform.position += ray.direction;
+                transform.rotation = Quaternion.LookRotation(ray.direction);
             }
         }
         prevMousePos = currMousePos;

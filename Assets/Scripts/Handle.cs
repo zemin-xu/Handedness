@@ -45,9 +45,10 @@ public class Handle : MonoBehaviour
                 Vector3 delta = Time.deltaTime * movement.offset.magnitude * force * Vector3.forward;
                 if (isRightHandle)
                 {
-                    transform.position = transform.position + delta * -1;
-                    doorControlled.transform.position = doorControlled.transform.position + delta * -1;
+                    delta *= -1;
                 }
+                transform.position = transform.position + delta;
+                doorControlled.transform.position = doorControlled.transform.position + delta;
             }
         }
     }
