@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
         // reset data
         CSVManager.CreateData();
+
+        Cursor.visible = false;
     }
 
     private void Update()

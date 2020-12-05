@@ -25,7 +25,17 @@ public class Controller : MonoBehaviour
             transform.rotation = camera.transform.rotation;
 
             Vector3 dir = Vector3.ProjectOnPlane(offset, transform.forward).normalized;
-            transform.position = transform.position + offset.magnitude * dir * sensitivity;
+
+            // use dot to know if rotation around Y is greater than 180 degree
+            float dot = Vector3.Dot(Vector3.forward, transform.forward);
+            if (dot > 0)
+            {
+                transform.position = transform.position + offset.magnitude * dir * sensitivity;
+            }
+            else
+            {
+                transform.position = transform.position + offset.magnitude * dir * sensitivity * -1;
+            }
         }
 
         prevPos = currPos;
