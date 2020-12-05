@@ -21,6 +21,8 @@ public class Navigation : MonoBehaviour
 
     private Rigidbody rigidbody;
 
+    public bool IsNavigating { get; private set; }
+
     private void Start()
     {
         rigidbody = transform.GetComponent<Rigidbody>();
