@@ -40,9 +40,15 @@ public class Handle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Controller"))
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
             {
                 Vector3 delta = Time.deltaTime * movement.offset.magnitude * force * Vector3.forward;
+
+                Debug.Log(movement.offset);
+                // append data
+                GameManager.GetData(movement.offset.x.ToString(), movement.offset.y.ToString(), Input.GetMouseButton(0).ToString(),
+                    Input.GetMouseButton(1).ToString(), GameManager.Instance.isRightHanded.ToString());
+
                 if (isRightHandle)
                 {
                     delta *= -1;

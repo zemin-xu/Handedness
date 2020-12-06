@@ -3106,7 +3106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9fd61a00d459f4699bff18bb9074a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouse: {fileID: 1634265195}
+  isRightHanded: 1
 --- !u!4 &286342800
 Transform:
   m_ObjectHideFlags: 0

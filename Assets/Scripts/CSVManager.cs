@@ -3,17 +3,18 @@ using System.IO;
 
 public static class CSVManager
 {
-    public const int FEATURE_NUM = 3;
+    public const int FEATURE_NUM = 4;
     private static string dataDirectoryName = "Data";
     private static string dataFileName = "UserData.csv";
     private static string seperator = ",";
 
     private static string[] headers = new string[FEATURE_NUM + 1]
     {
-        "position_x",
-        "position_y",
-        "position_z",
-        "left_handedness"
+        "controller_movement_offset_x",
+        "controller_movement_offset_y",
+        "left_button_click",
+        "right_button_click",
+        "is_right_handedness"
     };
 
     public static void Append(string[] strings)
@@ -38,18 +39,21 @@ public static class CSVManager
     public static void CreateData()
     {
         VerifyDirectory();
-        using (StreamWriter sw = File.CreateText(GetFilePath()))
+        if (!VerifyFile())
         {
-            string res = "";
-            for (int i = 0; i < headers.Length; i++)
+            using (StreamWriter sw = File.CreateText(GetFilePath()))
             {
-                if (res != "")
+                string res = "";
+                for (int i = 0; i < headers.Length; i++)
                 {
-                    res += seperator;
+                    if (res != "")
+                    {
+                        res += seperator;
+                    }
+                    res += headers[i];
                 }
-                res += headers[i];
+                sw.WriteLine(res);
             }
-            sw.WriteLine(res);
         }
     }
 
@@ -62,13 +66,14 @@ public static class CSVManager
         }
     }
 
-    private static void VerifyFile()
+    private static bool VerifyFile()
     {
         string file = GetFilePath();
         if (!File.Exists(file))
         {
-            return;
+            return false;
         }
+        return true;
     }
 
     private static string GetDirectoryPath()
