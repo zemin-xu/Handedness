@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 from sklearn import preprocessing
 from sklearn.model_selection import GridSearchCV
@@ -21,21 +20,6 @@ def load_parse_data():
 
     x_train, x_test, y_train, y_test = train_test_split(
         features_normalized, label, test_size=0.50)
-
-    return x_train,  x_test, y_train, y_test
-
-def parse_data(dataset):
-    # get the last column as label
-    df = pd.DataFrame(dataset)
-
-    label = df.iloc[:,-1]
-    features = df.drop(['is_right_handedness'], axis=1)
-
-    features_normalized = preprocessing.normalize(
-        features, norm='l2', axis=1, copy=True, return_norm=False)
-
-    x_train, x_test, y_train, y_test = train_test_split(
-        features_normalized, label, test_size=0.33)
 
     return x_train,  x_test, y_train, y_test
 
