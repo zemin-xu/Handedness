@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Handle : MonoBehaviour
 {
@@ -44,10 +45,14 @@ public class Handle : MonoBehaviour
             {
                 Vector3 delta = Time.deltaTime * movement.offset.magnitude * force * Vector3.forward;
 
-                Debug.Log(movement.offset);
                 // append data
-                GameManager.GetData(movement.offset.x.ToString(), movement.offset.y.ToString(), Input.GetMouseButton(0).ToString(),
-                    Input.GetMouseButton(1).ToString(), GameManager.Instance.isRightHanded.ToString());
+                GameManager.GetData(
+                    movement.offset.x.ToString(),
+                    movement.offset.y.ToString(),
+                    0.ToString(),
+                    0.ToString(),
+                    0.ToString(),
+                    Convert.ToInt32(GameManager.Instance.isRightHanded).ToString());
 
                 if (isRightHandle)
                 {

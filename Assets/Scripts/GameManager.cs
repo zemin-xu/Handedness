@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
     }
 
-    public static void GetData(string d0, string d1, string d2, string d3, string label)
+    public static void GetData(string d0, string d1, string d2, string d3, string d4, string label)
     {
         string[] ret = new string[CSVManager.FEATURE_NUM + 1];
 
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         ret[1] = d1;
         ret[2] = d2;
         ret[3] = d3;
+        ret[4] = d4;
 
         ret[CSVManager.FEATURE_NUM] = label;
         CSVManager.Append(ret);

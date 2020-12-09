@@ -3,7 +3,7 @@ using System.IO;
 
 public static class CSVManager
 {
-    public const int FEATURE_NUM = 4;
+    public const int FEATURE_NUM = 5;
     private static string dataDirectoryName = "Data";
     private static string dataFileName = "UserData.csv";
     private static string seperator = ",";
@@ -12,8 +12,9 @@ public static class CSVManager
     {
         "controller_movement_offset_x",
         "controller_movement_offset_y",
-        "left_button_click",
-        "right_button_click",
+        "controller_movement_rotation_offset_x",
+        "controller_movement_rotation_offset_y",
+        "touched_cube_num",
         "is_right_handedness"
     };
 
